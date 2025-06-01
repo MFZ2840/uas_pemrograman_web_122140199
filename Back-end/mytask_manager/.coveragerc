@@ -1,0 +1,3 @@
+[run]
+source = mytask_manager
+omit = mytask_manager/test*
