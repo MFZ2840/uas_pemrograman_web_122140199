@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { updateCategory, deleteCategory } from "../services/api";
 
 const API_URL = "http://localhost:6543/api";
 
@@ -20,13 +21,7 @@ const CategoryList = ({ categories, setCategories }) => {
 
   const saveEditedCategory = async () => {
     try {
-      const res = await fetch(`${API_URL}/categories/${editingCategory.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) throw new Error("Failed to update category");
+      await updateCategory(editingCategory.id, formData);
 
       const updated = categories.map((cat) =>
         cat.id === editingCategory.id ? { ...cat, ...formData } : cat
@@ -39,9 +34,9 @@ const CategoryList = ({ categories, setCategories }) => {
     }
   };
 
-  const deleteCategory = async (id) => {
+  const deleteCategoryHandler = async (id) => {
     try {
-      await fetch(`${API_URL}/categories/${id}`, { method: "DELETE" });
+      await deleteCategory(id);
       setCategories(categories.filter((cat) => cat.id !== id));
     } catch (err) {
       console.error("Error deleting category:", err);
@@ -102,7 +97,7 @@ const CategoryList = ({ categories, setCategories }) => {
                     Edit
                   </button>
                   <button
-                    onClick={() => deleteCategory(category.id)}
+                    onClick={() => deleteCategoryHandler(category.id)}
                     className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white py-2.5 px-5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95"
                   >
                     Delete

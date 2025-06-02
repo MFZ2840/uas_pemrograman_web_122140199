@@ -52,7 +52,16 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleComplete, categories, onSave
                 <CheckCircle className="w-6 h-6" />
               </button>
             )}
-            <button onClick={() => setIsEditing(true)} title="Edit" className="text-blue-600 hover:text-blue-700 hover:scale-110 transition">
+            <button
+              onClick={() => {
+                if (!task.is_done) setIsEditing(true);
+              }}
+              title={task.is_done ? "Cannot edit completed task" : "Edit"}
+              className={`text-blue-600 hover:text-blue-700 hover:scale-110 transition ${
+                task.is_done ? "opacity-40 cursor-not-allowed hover:scale-100" : ""
+              }`}
+              disabled={task.is_done}
+            >
               <Edit3 className="w-6 h-6" />
             </button>
             <button onClick={() => onDelete(task.id)} title="Delete" className="text-red-600 hover:text-red-700 hover:scale-110 transition">

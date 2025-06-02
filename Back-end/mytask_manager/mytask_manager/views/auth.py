@@ -57,6 +57,7 @@ def login_view(request):
             log.info(f"Invalid password for email: {email}")
             raise HTTPUnauthorized(json_body={'error': 'Incorrect password'})
         
+        request.session['user_id'] = user.id
         log.info(f"Login successful for user: {user.username}")
         
         return {
@@ -75,6 +76,11 @@ def login_view(request):
     except Exception as e:
         log.error(f"Unexpected error in login: {e}")
         raise HTTPInternalServerError(json_body={'error': 'Internal server error'})
+
+@view_config(route_name='login', request_method='OPTIONS', renderer='json')
+def login_options_view(request):
+    """Handle CORS preflight for login"""
+    return {}
 
 @view_config(route_name='register', renderer='json', request_method='POST')
 def register_view(request):
@@ -155,6 +161,11 @@ def register_view(request):
         log.error(f"Unexpected error in register: {e}")
         request.dbsession.rollback()
         raise HTTPInternalServerError(json_body={'error': 'Internal server error'})
+
+@view_config(route_name='register', request_method='OPTIONS', renderer='json')
+def register_options_view(request):
+    """Handle CORS preflight for register"""
+    return {}
 
 def includeme(config):
     """Include auth views - views are auto-registered via @view_config decorators"""

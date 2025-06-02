@@ -2,6 +2,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import configure_mappers
 from .category import Category
+from .meta import Base
 from .task import Task
 from .user import User
 import zope.sqlalchemy

@@ -1,38 +1,77 @@
-# MyTask Manager
+# 📌 MyTask Manager
 
-## Deskripsi Aplikasi Web
-MyTask Manager adalah aplikasi manajemen tugas yang membantu pengguna untuk tetap terorganisir dan produktif. Aplikasi ini memungkinkan pengguna untuk membuat, mengelola, dan mengelompokkan tugas mereka dalam berbagai kategori. Pengguna juga dapat membuat akun, login, dan mendaftar untuk mengakses fitur-fitur aplikasi.
+**MyTask Manager** adalah aplikasi web manajemen tugas modern yang memungkinkan pengguna untuk mengatur, memantau, dan menyelesaikan tugas-tugas mereka secara efisien. Aplikasi ini dibangun dengan teknologi **React.js** untuk frontend dan **Python Pyramid + PostgreSQL** untuk backend, serta dirancang dengan antarmuka yang bersih dan responsif.
 
-## Fitur pada Aplikasi
-- **Manajemen Tugas**: Pengguna dapat menambahkan, mengedit, dan menghapus tugas.
-- **Kategori Tugas**: Pengguna dapat mengelompokkan tugas dalam berbagai kategori seperti Pekerjaan, Kuliah, Pribadi, dan lain-lain.
-- **Autentikasi Pengguna**: Pengguna dapat mendaftar, login, dan mengelola akun mereka untuk mengakses aplikasi.
-- **Pencatatan Tanggal Tenggat**: Pengguna dapat menetapkan tenggat waktu untuk tugas dan melihat status tugas (Missing atau Pending).
-- **Tugas Selesai**: Pengguna dapat menandai tugas sebagai selesai.
+---
 
-## Dependensi Paket
-Aplikasi ini dibangun menggunakan teknologi berikut:
-- **React**: Untuk membangun antarmuka pengguna.
-- **React Router**: Untuk manajemen routing antar halaman.
-- **Tailwind CSS**: Untuk desain antarmuka yang responsif dan modern.
-- **React Icons**: Untuk menambahkan ikon dalam aplikasi.
-- **React Hook Form**: Untuk menangani input dan validasi form secara efisien.
-- **Axios**: Untuk berinteraksi dengan API (jika diaktifkan di masa depan).
+## 📝 Deskripsi Aplikasi
 
-### Untuk memulai aplikasi ini, ikuti langkah-langkah berikut:
-1. **Clone repository**:
-   git clone https://github.com/username/repository-name.git
+MyTask Manager membantu pengguna untuk:
+- Membuat dan mengelola daftar tugas.
+- Mengelompokkan tugas ke dalam kategori tertentu.
+- Melihat progres penyelesaian tugas secara visual.
+- Menggunakan sistem login dan register untuk manajemen user.
+- Mendukung multi-user dengan database relational PostgreSQL.
 
-2. **Install dependensi**:
-Masuk ke dalam folder aplikasi dan jalankan perintah berikut untuk menginstal semua dependensi yang dibutuhkan:
-    npm install
+---
 
-3. **Jalankan aplikasi**:
-Setelah dependensi terpasang, jalankan aplikasi dengan perintah:
-    npm start
+## 📦 Dependensi Paket
 
-4. **Aplikasi akan tersedia di http://localhost:3000.**
+### Backend (Python - Pyramid):
+- `pyramid`
+- `pyramid_jinja2`
+- `SQLAlchemy`
+- `alembic`
+- `psycopg2-binary`
+- `bcrypt`
+- `zope.sqlalchemy`
+- `pyramid_tm`
+- `waitress`
 
-## Referensi
-- [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+### Frontend (React.js):
+- `react-router-dom`
+- `axios`
+- `tailwindcss`
+- `@heroicons/react`
+- `react-icons`
+
+> Pastikan `Node.js`, `npm`, dan `Python` telah terinstal di sistem Anda.
+
+---
+
+## ⚙️ Fitur Aplikasi
+
+### 🔐 Autentikasi
+- Login dan Register user
+- Password disimpan menggunakan hashing `bcrypt`
+
+### 📂 Manajemen Tugas
+- Tambah, edit, hapus, dan tandai tugas sebagai selesai
+- Filter tugas berdasarkan kategori
+
+### 🗃️ Manajemen Kategori
+- Tambah, edit, dan hapus kategori tugas
+- Kategori terhubung ke user dan tugas secara relasional
+
+### 📊 Dashboard
+- Statistik visual: jumlah tugas, progres penyelesaian, daftar tugas terbaru
+- Tampilan modern dengan animasi dan gradient UI
+
+### 🛡️ Keamanan
+- Proteksi API dengan middleware
+- Validasi input pada form
+
+---
+
+## 📚 Referensi
+
+- [Pyramid Web Framework Documentation](https://docs.pylonsproject.org/projects/pyramid/en/latest/)
+- [SQLAlchemy ORM](https://www.sqlalchemy.org/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [React.js Official Docs](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [bcrypt for Python](https://pypi.org/project/bcrypt/)
+
+---
+
+📌 _Proyek ini dikembangkan sebagai bagian dari Tugas Besar Pemrograman Web 2024/2025 di Institut Teknologi Sumatera._

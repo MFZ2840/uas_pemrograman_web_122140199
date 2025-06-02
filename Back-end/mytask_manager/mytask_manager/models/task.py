@@ -13,3 +13,4 @@ class Task(Base):
     category_id = Column(Integer, ForeignKey('categories.id'))
 
     category = relationship("Category", backref="tasks")
+    user_id = Column(Integer, nullable=False)

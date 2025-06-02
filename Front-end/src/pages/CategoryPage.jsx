@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CategoryList from "../components/CategoryList";
 import CategoryForm from "../components/CategoryForm";
+import { fetchCategories, createCategory } from "../services/api";
 
 const API_URL = "http://localhost:6543/api";
 
@@ -9,25 +10,17 @@ const CategoryPage = () => {
   const [newCategory, setNewCategory] = useState({ name: "", description: "" });
 
   useEffect(() => {
-    fetch(`${API_URL}/categories`)
-      .then((res) => res.json())
-      .then((data) => setCategories(data))
+    fetchCategories()
+      .then(setCategories)
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
 
   const addCategory = async () => {
     if (!newCategory.name.trim() || !newCategory.description.trim()) return;
     try {
-      const res = await fetch(`${API_URL}/categories`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newCategory),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error("Gagal menambahkan kategori.");
-
-      const updated = await fetch(`${API_URL}/categories`).then((r) => r.json());
+      await createCategory(newCategory);
+      
+      const updated = await fetchCategories();
       setCategories(updated);
       setNewCategory({ name: "", description: "" });
     } catch (err) {

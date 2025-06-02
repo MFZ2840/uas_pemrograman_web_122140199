@@ -79,11 +79,6 @@ const TaskPage = () => {
 
         {/* Add Form */}
         <TaskForm onAdd={handleAddTask} categories={categories} />
-        <TaskFilter
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
 
         {/* Filter Section */}
         <TaskFilter

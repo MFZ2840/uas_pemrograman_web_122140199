@@ -4,7 +4,8 @@ import axios from "axios";
 const API_URL = "http://localhost:6543";
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: "http://localhost:6543",
+  withCredentials: true, // ✅ ini penting untuk mengirim cookie session
   headers: {
     "Content-Type": "application/json",
   },
@@ -21,16 +22,20 @@ api.interceptors.response.use(
 
 // Add auth token to requests if available
 api.interceptors.request.use(
-  config => {
+  (config) => {
+    // Pastikan credentials selalu dikirim
+    config.withCredentials = true;
+    
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user.token) {
-      config.headers.Authorization = `Bearer ${user.token}`;
+      config.headers = {
+        ...config.headers,
+        Authorization: `Bearer ${user.token}`
+      };
     }
     return config;
   },
-  error => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 /* ------------------------- TASK API ------------------------- */
